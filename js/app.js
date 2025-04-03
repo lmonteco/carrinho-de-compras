@@ -1,4 +1,5 @@
 carrinho = [];
+let valorInicial = 0;
 
 //pegar a informação do combobox de produtos;**
 //pegar a quantidade de itens definida no input;**
@@ -10,16 +11,18 @@ carrinho = [];
 
 function adicionar() {
     [nomeProduto, valorProduto] = document.getElementById('produto').value.split(' - R$');
-    quantidade = parseInt(document.getElementById('quantidade').value);
+    let quantidade = parseInt(document.getElementById('quantidade').value);
+    let totalProduto = quantidade * parseInt(valorProduto);
+    
     if (isNaN(quantidade) || quantidade <= 0) {
         alert(`Você precisa informar uma quantidade válida. Tente novamente.`);
         return;
     }
-    totalProduto = quantidade * parseInt(valorProduto);
     
     carrinho.push(`${quantidade}x ${nomeProduto} R$ ${totalProduto}`);
 
-    atualizarCarrinho(quantidade, nomeProduto, totalProduto);
+    atualizarCarrinho(quantidade, nomeProduto, totalProduto);    
+    totalizar(totalProduto);
 }
 
 function atualizarCarrinho(quantidade, descricao, valor) {    
@@ -27,14 +30,18 @@ function atualizarCarrinho(quantidade, descricao, valor) {
     let novoProduto = document.createElement('section');
 
     novoProduto.classList.add('carrinho__produtos__produto');
-    novoProduto.innerHTML = `<span class="texto-azul">${quantidade}</span> ${descricao} <span class="texto-azul"> R$${valor}</span>`;
+    novoProduto.innerHTML = `<span class="texto-azul">${quantidade} x</span> ${descricao} <span class="texto-azul"> R$${valor}</span>`;
     listaProdutos.appendChild(novoProduto);
 }
 
-function limpar() {
-    
+function totalizar(valorAdicionado) {
+    let valorTotal = document.getElementById('valor-total');
+    let somaTotal = valorInicial + valorAdicionado;
+    valorInicial = somaTotal
+
+    valorTotal.innerHTML = `R$ ${somaTotal}`;
 }
 
-function totalizar() {
+function limpar() {
 
 }
