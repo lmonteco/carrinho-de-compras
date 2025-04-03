@@ -18,6 +18,7 @@ function adicionar() {
     
     adicionarProdutoCarrinho(valorQuantidade, nomeProduto, totalProduto);    
     totalizar(totalProduto);
+    quantidade.value = '';
 }
 
 function adicionarProdutoCarrinho(quantidade, descricao, valor) {    
@@ -31,12 +32,12 @@ function adicionarProdutoCarrinho(quantidade, descricao, valor) {
 function totalizar(valorAdicionado) {
     let somaTotal = valorInicial + valorAdicionado;
 
-    valorInicial = somaTotal
+    valorInicial = somaTotal;
     valorTotal.innerHTML = `R$ ${somaTotal}`;
 }
 
 function limpar() {
-    valorInicial = 0
+    valorInicial = 0;
     valorTotal.innerHTML = `R$ ${valorInicial}`;
     carrinho = [];
     quantidade.value = '';
